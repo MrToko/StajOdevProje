@@ -1,0 +1,4 @@
+com\mycompany\kafkademo\Student.class
+com\mycompany\kafkademo\StudentProducer.class
+com\mycompany\kafkademo\StudentConsumer.class
+com\mycompany\kafkademo\KafkaDemo.class
