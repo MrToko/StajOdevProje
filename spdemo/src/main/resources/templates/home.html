@@ -1,0 +1,47 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Home Page</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Hello!</h1>-->
+<!--<p>Welcome to <span th:text="${appName}">Our App</span></p>-->
+<!--</body>-->
+<!--</html>-->
+<!-- src/main/resources/templates/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <style>
+        table { width: 60%; border-collapse: collapse; margin: 20px auto; }
+        th, td { border: 1px solid #999; padding: 10px; }
+        th { background-color: #eee; }
+        body { font-family: sans-serif; text-align: center; }
+    </style>
+</head>
+<body>
+<h1 th:text="${appName}">Book App</h1>
+<table id="bookTable">
+    <thead>
+    <tr><th>Başlık</th><th>Yazar</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    fetch('/api/books')
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.querySelector('#bookTable tbody');
+            data.forEach(book => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${book.title}</td><td>${book.author}</td>`;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(err => console.error("Hata:", err));
+</script>
+</body>
+</html>
